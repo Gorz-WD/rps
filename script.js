@@ -30,7 +30,7 @@ scissors.addEventListener('click', () => {
 const getComputerChoice = () => {
   const options = ['rock', 'paper', 'scissors']
   let choice = options[Math.floor(Math.random() * options.length)];
-  document.getElementById("cChoiceImg").src = `../icons/${choice}-result.svg`;
+  document.getElementById("cChoiceImg").src = `./icons/${choice}-result.svg`;
   return choice
 }
 
