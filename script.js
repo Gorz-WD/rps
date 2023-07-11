@@ -10,6 +10,14 @@ const roundResult = document.getElementById('roundResult')
 const playerScore = document.getElementById('pScore')
 const computerScore = document.getElementById('cScore')
 
+const gameOverScreen = document.getElementById('gameOver')
+const winner = document.getElementById('winner')
+const pFinalScore = document.getElementById('pFinalScore')
+const cFinalScore = document.getElementById('cFinalScore')
+const resetBtn = document.getElementById('resetBtn')
+
+
+
 let pScore = 0
 let cScore = 0
 
@@ -25,6 +33,10 @@ scissors.addEventListener('click', () => {
   document.getElementById("pChoiceImg").src = "../icons/scissors-result.svg";
   game('scissors', getComputerChoice()
 )})
+
+resetBtn.addEventListener('click', () => {
+  reset()
+})
 
 
 const getComputerChoice = () => {
@@ -60,15 +72,23 @@ const game = (playerSelection, computerSelecion) => {
 }
 
 const gameOver = () => {
+  pFinalScore.textContent = pScore
+  cFinalScore.textContent = cScore
   if (pScore > cScore) {
-    roundResult.textContent = 'You WIN'
+    winner.textContent = 'You Win!'
   }else{
-    roundResult.textContent = 'You LOSE'
+    winner.textContent = 'You Lose!'
   }
-  reset()
+  gameOverScreen.style.display = 'flex'
 }
 
 const reset = () => {
   pScore = 0
   cScore = 0
+  playerScore.textContent = `Player: ${pScore}`
+  computerScore.textContent = `Computer: ${cScore}`
+  roundResult.textContent = 'Choice your weapon!'
+  document.getElementById("pChoiceImg").src = "../icons/default.png";
+  document.getElementById("cChoiceImg").src = "../icons/default.png";
+  gameOverScreen.style.display = 'none'
 }
